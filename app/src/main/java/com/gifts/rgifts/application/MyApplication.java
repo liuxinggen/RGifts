@@ -2,7 +2,7 @@ package com.gifts.rgifts.application;
 
 import android.app.Application;
 
-import com.mob.MobSDK;
+import com.gifts.rgifts.strategy.StrategyFactory;
 
 import cn.bmob.v3.Bmob;
 
@@ -42,6 +42,7 @@ public class MyApplication extends Application {
         //.setFileExpiration(2500)
         //.build();
         //Bmob.initialize(config);
+
 
 
     }

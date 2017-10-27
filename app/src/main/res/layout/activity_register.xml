@@ -42,7 +42,7 @@
                         android:paddingRight="@dimen/margin_space_10"
                         app:met_floatingLabel="normal"
                         app:met_hideUnderline="true"
-                        app:met_maxCharacters="11">
+                        >
 
                     </com.rengwuxian.materialedittext.MaterialEditText>
                 </LinearLayout>
@@ -70,7 +70,7 @@
                         android:paddingRight="@dimen/margin_space_10"
                         app:met_floatingLabel="normal"
                         app:met_hideUnderline="true"
-                        app:met_maxCharacters="4">
+                        >
 
                     </com.rengwuxian.materialedittext.MaterialEditText>
 
@@ -90,6 +90,10 @@
 
 
                 </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/background_color"></View>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -100,7 +104,7 @@
                         android:id="@+id/edit_password_register"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="设置登录密码"
+                        android:hint="输入密码"
                         android:inputType="textPassword"
                         android:maxLength="11"
                         android:paddingLeft="@dimen/margin_space_10"
@@ -147,8 +151,10 @@
                 android:layout_marginLeft="@dimen/margin_space_40"
                 android:layout_marginRight="@dimen/margin_space_40"
                 android:layout_marginTop="@dimen/margin_space_20"
+                android:background="@drawable/btn_login_normal_bg"
+                android:textSize="@dimen/text_size_12"
                 android:enabled="false"
-                android:text="确认" />
+                android:text="登录/注册" />
         </LinearLayout>
     </ScrollView>
 

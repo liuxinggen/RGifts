@@ -27,30 +27,30 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.smssdk.EventHandler;
-import cn.smssdk.OnSendMessageHandler;
 import cn.smssdk.SMSSDK;
 
 /**
- * 类名： RegisterActivity
+ * 类名： LandRActivity
  * 创建人： Liu_xg
  * 时间： 2017/10/25 13:38
- * 描述：注册
+ * 描述：登录注册界面
  * 修改人：
  * 修改时间：
  * 修改备注：
  */
-public class RegisterActivity extends BaseActivity {
+public class LandRActivity extends BaseActivity {
 
-    private static final String TAG = "RegisterActivity";
+    private static final String TAG = "LandRActivity";
     @BindView(R.id.edit_phone_register)
     MaterialEditText editPhoneRegister;
     @BindView(R.id.edit_code_register)
@@ -69,7 +69,7 @@ public class RegisterActivity extends BaseActivity {
 
     private String phoneStr, codeStr, countryCode = "86";
     private Handler mHandlerTime = new Handler();
-    private int seconds = 10;
+    private int seconds = 60;
     private final int TIME = 1000;
     private boolean isRight = false;
 
@@ -229,9 +229,9 @@ public class RegisterActivity extends BaseActivity {
     /**
      * 把电话号码存到服务器上
      */
-    private void phoneToService(String password) {
+    private void phoneToService(final String phoneStr, String password) {
         userName = "r_" + System.currentTimeMillis();
-        phoneStr = editPhoneRegister.getText().toString().trim();
+
         UserBean userBean = new UserBean();
         userBean.setName(userName);
         userBean.setPassword(password);
@@ -262,8 +262,8 @@ public class RegisterActivity extends BaseActivity {
 
                 break;
             case R.id.tv_register_time:
+                btnRegisterSure.setEnabled(true);
                 countDown();
-
                 break;
             case R.id.btn_register_sure:
                 saveUserData();
@@ -307,11 +307,11 @@ public class RegisterActivity extends BaseActivity {
      * 验证数据和保存数据
      */
     private void saveUserData() {
-        //验证码正确
-        if (isRight) {
-            Toast.makeText(activity, "请输入正确的验证码", Toast.LENGTH_SHORT).show();
-            return;
-        }
+//        //验证码正确
+//        if (!isRight) {
+//            Toast.makeText(activity, "请输入正确的验证码", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
         password = editPasswordRegister.getText().toString().trim();
         if (TextUtils.isEmpty(password)) {
             Toast.makeText(activity, "请输入密码", Toast.LENGTH_SHORT).show();
@@ -323,7 +323,41 @@ public class RegisterActivity extends BaseActivity {
             Toast.makeText(activity, "请先阅读《服务条款》", Toast.LENGTH_SHORT).show();
             return;
         }
-        phoneToService(password);
+        phoneStr = editPhoneRegister.getText().toString().trim();
+        //老用户登录
+        loginToService(phoneStr, password);
+    }
+
+    private void loginToService(final String phoneStr, final String password) {
+        BmobQuery<UserBean> query = new BmobQuery<UserBean>();
+        //查询playerName叫“比目”的数据
+        query.addWhereEqualTo("phoneNum", phoneStr);
+        //返回50条数据，如果不加上这条语句，默认返回10条数据
+        query.setLimit(1);
+        //执行查询方法
+        query.findObjects(new FindListener<UserBean>() {
+            @Override
+            public void done(List<UserBean> object, BmobException e) {
+                if (e == null && object.size() > 0) {
+                    for (UserBean userBean : object) {
+                        //存在
+                        if (userBean.getPassword().endsWith(password)) {
+                            //登录成功
+                            Toast.makeText(LandRActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+                        } else {
+                            //密码错误
+                            Toast.makeText(LandRActivity.this, "账号或密码错误", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    }
+                } else {
+                    Log.i("bmob", "失败：" + e.getMessage() + "," + e.getErrorCode());
+                    //新用户注册
+                    phoneToService(phoneStr, password);
+                }
+            }
+        });
+
     }
 
     Handler mHandlerCode = new Handler() {
@@ -333,12 +367,10 @@ public class RegisterActivity extends BaseActivity {
             int event = msg.arg1;
             int result = msg.arg2;
             Object data = msg.obj;
-//            ArrayList<String> data = (ArrayList<String>) msg.obj;
             if (result == SMSSDK.RESULT_COMPLETE) {
                 //回调完成
                 if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
                     //提交验证码成功
-                    Toast.makeText(activity, "验证码输入正确", Toast.LENGTH_SHORT).show();
                     isRight = true;
                     btnRegisterSure.setEnabled(true);
                 } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
@@ -366,11 +398,7 @@ public class RegisterActivity extends BaseActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-
             }
-
-
         }
     };
 
