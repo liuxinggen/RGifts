@@ -1,0 +1,38 @@
+<resources>
+    <!-- 通用 -->
+    <dimen name="margin_space_5">5dip</dimen>
+    <dimen name="margin_space_10">10dip</dimen>
+    <dimen name="margin_space_15">15dip</dimen>
+    <dimen name="margin_space_20">20dip</dimen>
+    <dimen name="margin_space_25">25dip</dimen>
+    <dimen name="margin_space_30">30dip</dimen>
+    <dimen name="margin_space_35">35dip</dimen>
+    <dimen name="margin_space_40">40dip</dimen>
+    <dimen name="margin_space_45">45dip</dimen>
+    <dimen name="margin_space_50">50dip</dimen>
+    <dimen name="margin_space_55">55dip</dimen>
+    <dimen name="margin_space_60">60dip</dimen>
+    <dimen name="margin_space_65">65dip</dimen>
+    <dimen name="margin_space_70">70dip</dimen>
+    <dimen name="margin_space_75">75dip</dimen>
+    <dimen name="margin_space_85">85dip</dimen>
+    <dimen name="margin_space_90">90dip</dimen>
+    <dimen name="margin_space_95">95dip</dimen>
+    <dimen name="margin_space_100">100dip</dimen>
+
+
+    <!--字体-->
+    <dimen name="text_size_10">10sp</dimen>
+    <dimen name="text_size_11">11sp</dimen>
+    <dimen name="text_size_12">12sp</dimen>
+    <dimen name="text_size_13">13sp</dimen>
+    <dimen name="text_size_14">14sp</dimen>
+    <dimen name="text_size_15">15sp</dimen>
+    <dimen name="text_size_16">16sp</dimen>
+    <dimen name="text_size_17">17sp</dimen>
+    <dimen name="text_size_18">18sp</dimen>
+    <dimen name="text_size_19">19sp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
+
+
+</resources>

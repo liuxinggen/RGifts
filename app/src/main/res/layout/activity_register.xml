@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title_layout"></include>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_space_20"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/margin_space_5">
+
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:id="@+id/edit_phone_register"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="手机号码"
+                        android:inputType="phone"
+                        android:maxLength="11"
+                        android:paddingLeft="@dimen/margin_space_10"
+                        android:paddingRight="@dimen/margin_space_10"
+                        app:met_floatingLabel="normal"
+                        app:met_hideUnderline="true"
+                        app:met_maxCharacters="11">
+
+                    </com.rengwuxian.materialedittext.MaterialEditText>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/background_color"></View>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/margin_space_5">
+
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:id="@+id/edit_code_register"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="验证码"
+                        android:inputType="number"
+                        android:maxLength="4"
+                        android:paddingLeft="@dimen/margin_space_10"
+                        android:paddingRight="@dimen/margin_space_10"
+                        app:met_floatingLabel="normal"
+                        app:met_hideUnderline="true"
+                        app:met_maxCharacters="4">
+
+                    </com.rengwuxian.materialedittext.MaterialEditText>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/background_color"></View>
+
+                    <TextView
+                        android:id="@+id/tv_register_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/margin_space_10"
+                        android:layout_marginRight="@dimen/margin_space_10"
+                        android:gravity="center"
+                        android:text="获取验证码" />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/margin_space_5">
+
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:id="@+id/edit_password_register"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="设置登录密码"
+                        android:inputType="textPassword"
+                        android:maxLength="11"
+                        android:paddingLeft="@dimen/margin_space_10"
+                        android:paddingRight="@dimen/margin_space_10"
+                        app:met_floatingLabel="normal"
+                        app:met_hideUnderline="true"
+                        >
+
+                    </com.rengwuxian.materialedittext.MaterialEditText>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_space_20">
+
+                <CheckBox
+                    android:id="@+id/cb_register_select"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_space_20" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_space_5"
+                    android:text="我已阅读并同意" />
+
+                <TextView
+                    android:id="@+id/tv_register_items"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="服务条款"
+                    android:textColor="@color/blue" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_register_sure"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_space_40"
+                android:layout_marginRight="@dimen/margin_space_40"
+                android:layout_marginTop="@dimen/margin_space_20"
+                android:enabled="false"
+                android:text="确认" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>
